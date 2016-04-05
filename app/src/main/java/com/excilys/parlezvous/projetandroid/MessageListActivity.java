@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -47,7 +46,8 @@ public class MessageListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+        //List used by the Adapter
+        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
 
         for (String str : result.split(";")) {
             String[] elements = str.split(":");
@@ -58,7 +58,11 @@ public class MessageListActivity extends AppCompatActivity {
                 list.add(0, tmp);
             }
         }
+
+        //creating listAdapter with ArrayList of Hashmap.
         ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[] {"name", "message"}, new int[] { R.id.pseudo, R.id.textMessage });
+
+        //Setting list Adapter
         listView.setAdapter(adapter);
     }
 }

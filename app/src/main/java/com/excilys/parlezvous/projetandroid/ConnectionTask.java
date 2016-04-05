@@ -2,7 +2,6 @@ package com.excilys.parlezvous.projetandroid;
 
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
