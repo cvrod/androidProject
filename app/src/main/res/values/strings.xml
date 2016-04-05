@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ProjetAndroid</string>
     <string name="action_settings">Settings</string>
+    <string name="textHeader">Formulaire de connexion</string>
+    <string name="userLabel">Nom d\'utilisateur :</string>
+    <string name="passwordLabel">Mot de passe :</string>
+    <string name="flushButton">Vider</string>
+    <string name="sendButton">Envoyer</string>
 </resources>
