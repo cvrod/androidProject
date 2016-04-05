@@ -6,4 +6,13 @@
     <string name="passwordLabel">Mot de passe :</string>
     <string name="flushButton">Vider</string>
     <string name="sendButton">Envoyer</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="textWelcome">Accueil</string>
+    <string name="messageListButton">Liste des messages</string>
+    <string name="sendMessageButton">Envoyer un message</string>
+    <string name="title_activity_message_list">MessageListActivity</string>
+    <string name="refreshButton">Rafraichir</string>
+    <string name="title_activity_send_message">SendMessageActivity</string>
+    <string name="sendMessageHeader">Envoi de message</string>
+    <string name="sendMessage">Envoyer</string>
 </resources>

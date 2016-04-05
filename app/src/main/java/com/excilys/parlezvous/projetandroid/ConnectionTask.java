@@ -10,9 +10,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by excilys on 05/04/16.
- */
 public class ConnectionTask extends android.os.AsyncTask {
     MainActivity activity;
     String user;
@@ -40,21 +37,15 @@ public class ConnectionTask extends android.os.AsyncTask {
         URL url = null;
         HttpURLConnection urlConnection = null;
         try {
-            //url = new URL("http://[host]:[port]/connect/"+user+"/"+password);
-            url = new URL("http://www.google.com");
+            url = new URL("http://formation-android-esaip.herokuapp.com/connect/"+user+"/"+password);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             String response = InputStreamToString.convert(in);
             System.out.println(response);
-            //if(response.compareTo("true") == 0){
-            //TODO
-            if(!response.isEmpty()){
-                activity.setIdentificationSuccess(true);
+            if(response.compareTo("true") == 0){
                 return true;
             }
             else{
-                Toast.makeText(activity, "Utilisateur inconnu !", Toast.LENGTH_SHORT).show();
-                activity.setIdentificationSuccess(false);
                 return false;
             }
         } catch (IOException e) {

@@ -66,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         return this.passwordField.getText().toString();
     }
 
-    //Setters
-    public void setIdentificationSuccess(boolean b) {
-        this.identificationSuccess = b;
-    }
 
     protected void onDestroy() {
         super.onDestroy();
@@ -104,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Sending logs
     public void sendButtonMethod(View view) {
-        Toast.makeText(this, "Toast !", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Toast !", Toast.LENGTH_SHORT).show();
         ConnectionTask task = new ConnectionTask(this);
         task.execute();
         boolean result = false;
@@ -126,11 +122,12 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("password", this.getPassword());
             editor.commit();
 
-            //TODO
-            //Intent intent = new Intent(MainActivity.this, ConnectedActivity.class);
-            //intent.putExtra("user", usernameField.getText().toString());
-            //startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+            intent.putExtra("user", usernameField.getText().toString());
+            startActivity(intent);
         }
-
+        else{
+            Toast.makeText(this, "Utilisateur inconnu !", Toast.LENGTH_SHORT).show();
+        }
     }
 }
