@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Activity for message list display
+ */
 public class MessageListActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "PrefsFile";
     private ListView listView;
@@ -32,7 +35,11 @@ public class MessageListActivity extends AppCompatActivity {
         refresh();
     }
 
-    //Getting fresh list from server
+    /**
+     * Refreshing message list
+     * launching MessageTask to perform request on server
+     * @see MessageTask
+     */
     public void refresh(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String user = settings.getString("user", "");

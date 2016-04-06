@@ -1,7 +1,7 @@
 package com.excilys.parlezvous.projetandroid.tasks;
 
 
-import com.excilys.parlezvous.projetandroid.InputStreamToString;
+import com.excilys.parlezvous.projetandroid.tools.InputStreamToString;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

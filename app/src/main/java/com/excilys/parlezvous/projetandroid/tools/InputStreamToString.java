@@ -1,4 +1,4 @@
-package com.excilys.parlezvous.projetandroid;
+package com.excilys.parlezvous.projetandroid.tools;
 
 import java.io.BufferedReader;
 import java.io.IOException;

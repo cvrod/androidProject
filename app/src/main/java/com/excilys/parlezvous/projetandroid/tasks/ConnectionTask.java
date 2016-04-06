@@ -3,7 +3,7 @@ package com.excilys.parlezvous.projetandroid.tasks;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.excilys.parlezvous.projetandroid.InputStreamToString;
+import com.excilys.parlezvous.projetandroid.tools.InputStreamToString;
 import com.excilys.parlezvous.projetandroid.activities.MainActivity;
 
 import java.io.BufferedInputStream;

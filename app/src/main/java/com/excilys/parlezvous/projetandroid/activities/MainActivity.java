@@ -16,6 +16,9 @@ import com.excilys.parlezvous.projetandroid.tasks.ConnectionTask;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Main Activity : display connection form
+ */
 public class MainActivity extends AppCompatActivity {
     //Getting class name
     private final String TAG = MainActivity.class.getSimpleName();
@@ -94,13 +97,21 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onRestoreInstanceState !");
     }
 
-    //Reset user/password textfield
+    /**
+     * Method called to flush usernameField and passwordField
+     * @param view
+     */
     public void flushButtonMethod(View view) {
         usernameField.setText("");
         passwordField.setText("");
     }
 
-    //Sending logs
+    /**
+     * Method called when connection button is pushed
+     * Calling ConnectionTask
+     * @see ConnectionTask
+     * @param view
+     */
     public void sendButtonMethod(View view) {
         //Toast.makeText(this, "Toast !", Toast.LENGTH_SHORT).show();
         ConnectionTask task = new ConnectionTask(this);
