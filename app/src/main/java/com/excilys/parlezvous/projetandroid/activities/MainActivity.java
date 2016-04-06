@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         boolean result = false;
         try {
             result = (boolean) task.get();
-            Log.i(TAG, "Result from ParlezVousTask : " + result);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -1,15 +1,22 @@
 package com.excilys.parlezvous.projetandroid.tasks;
 
+import android.util.Base64;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
 import com.excilys.parlezvous.projetandroid.tools.InputStreamToString;
 import com.excilys.parlezvous.projetandroid.activities.MainActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 
 /**
@@ -31,7 +38,7 @@ public class ConnectionTask extends android.os.AsyncTask {
         this.activity = act;
     }
 
-    
+
     protected void onPreExecute() {
         super.onPreExecute();
         ProgressBar bar = activity.getProgressBar();
@@ -49,24 +56,24 @@ public class ConnectionTask extends android.os.AsyncTask {
         user = activity.getUsername();
         password = activity.getPassword();
 
-        URL url = null;
-        HttpURLConnection urlConnection = null;
+        String response = ConnectionHandler.authentification(user, password);
+        System.out.println(response);
+
+        //Getting JSON from str
+        JSONObject jsonResponse;
         try {
-            url = new URL("http://formation-android-esaip.herokuapp.com/connect/" + user + "/" + password);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            String response = InputStreamToString.convert(in);
-            if (response.compareTo("true") == 0) {
+            jsonResponse = new JSONObject(response);
+            int status = jsonResponse.getInt("status");
+            if(status == 200){
                 return true;
-            } else {
+            }
+            else{
                 return false;
             }
-        } catch (IOException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-        } finally {
-            urlConnection.disconnect();
         }
-        return null;
+        return false;
     }
 
     protected void onPostExecute(Object result) {
