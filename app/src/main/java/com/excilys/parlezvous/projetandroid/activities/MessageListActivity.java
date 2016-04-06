@@ -1,6 +1,7 @@
 package com.excilys.parlezvous.projetandroid.activities;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.SimpleAdapter;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
-import com.excilys.parlezvous.projetandroid.tools.messagesToList;
+import com.excilys.parlezvous.projetandroid.tools.MessagesToList;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +27,7 @@ public class MessageListActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "PrefsFile";
     private ListView listView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,7 @@ public class MessageListActivity extends AppCompatActivity {
         //Getting ListView from Layout
         listView = (ListView) findViewById(R.id.listView);
         refresh();
+
     }
 
     public void refreshButtonMethod(View view) {
@@ -59,7 +65,7 @@ public class MessageListActivity extends AppCompatActivity {
         }
 
         //List used by the Adapter
-        ArrayList<HashMap<String, String>> list = messagesToList.toList(result);
+        ArrayList<HashMap<String, String>> list = MessagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
         ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[]{"name", "message"}, new int[]{R.id.pseudo, R.id.textMessage});
@@ -67,4 +73,5 @@ public class MessageListActivity extends AppCompatActivity {
         //Setting list Adapter
         listView.setAdapter(adapter);
     }
+
 }

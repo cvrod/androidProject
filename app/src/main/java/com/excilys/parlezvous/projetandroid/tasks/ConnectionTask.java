@@ -1,23 +1,14 @@
 package com.excilys.parlezvous.projetandroid.tasks;
 
-import android.util.Base64;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
-import com.excilys.parlezvous.projetandroid.tools.InputStreamToString;
 import com.excilys.parlezvous.projetandroid.activities.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.Authenticator;
-import java.net.HttpURLConnection;
-import java.net.PasswordAuthentication;
-import java.net.URL;
 
 /**
  * Connection Task who verify if a given user exist on server

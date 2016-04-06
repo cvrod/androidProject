@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.PasswordAuthentication;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class ConnectionHandler {
@@ -37,6 +36,24 @@ public class ConnectionHandler {
 
         try {
             url = new URL(CONNECTION_URL + "/connect");
+            urlConnection = (HttpURLConnection) url.openConnection();
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            return InputStreamToString.convert(in);
+        } catch (IOException e) {
+            return "{\"status\":401}";
+        } finally {
+            urlConnection.disconnect();
+        }
+    }
+
+    public static String getMessages(final String user, final String password) {
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+
+        Authenticator.setDefault(new BasicAuthenticator(user, password));
+
+        try {
+            url = new URL(CONNECTION_URL + "/messages?&limit=30&offset=0");
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             return InputStreamToString.convert(in);
