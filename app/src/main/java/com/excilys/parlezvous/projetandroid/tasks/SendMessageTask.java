@@ -2,6 +2,8 @@ package com.excilys.parlezvous.projetandroid.tasks;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,24 +44,7 @@ public class SendMessageTask extends android.os.AsyncTask {
      */
     protected Object doInBackground(Object[] params) {
 
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-        try {
-            System.out.println(user);
-            System.out.println(password);
-            System.out.println(message);
-            message = URLEncoder.encode(message, "UTF-8");
-            message = message.replace("+", "%20");
-
-            url = new URL("http://formation-android-esaip.herokuapp.com/message/" + user + "/" + password + "/" + message);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            urlConnection.disconnect();
-        }
+        ConnectionHandler.sendMessage(user, password, message);
         return null;
     }
 

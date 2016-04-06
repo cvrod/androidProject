@@ -10,6 +10,8 @@ import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
 
 public class MessageTask extends android.os.AsyncTask {
     public static final String PREFS_NAME = "PrefsFile";
+    public static final int LIMIT = 1000;
+    public static final int OFFSET = 0;
     private String user;
     private String password;
 
@@ -31,7 +33,7 @@ public class MessageTask extends android.os.AsyncTask {
      * @return str containing messages list separated by ';'
      */
     protected Object doInBackground(Object[] params) {
-        String response = ConnectionHandler.getMessages(this.user, this.password);
+        String response = ConnectionHandler.getMessages(this.user, this.password, LIMIT, OFFSET);
         System.out.println(response);
         return response;
     }
