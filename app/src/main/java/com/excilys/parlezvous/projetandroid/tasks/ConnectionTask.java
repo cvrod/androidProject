@@ -31,6 +31,7 @@ public class ConnectionTask extends android.os.AsyncTask {
         this.activity = act;
     }
 
+    
     protected void onPreExecute() {
         super.onPreExecute();
         ProgressBar bar = activity.getProgressBar();
