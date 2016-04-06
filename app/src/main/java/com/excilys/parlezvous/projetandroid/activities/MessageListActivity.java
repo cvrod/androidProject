@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
+import com.excilys.parlezvous.projetandroid.tools.messagesToList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,17 +58,7 @@ public class MessageListActivity extends AppCompatActivity {
         }
 
         //List used by the Adapter
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
-
-        for (String str : result.split(";")) {
-            String[] elements = str.split(":");
-            if (elements.length == 2) {
-                HashMap<String,String> tmp = new HashMap<String, String>();
-                tmp.put("name", elements[0]);
-                tmp.put("message", elements[1]);
-                list.add(0, tmp);
-            }
-        }
+        ArrayList<HashMap<String, String>> list = messagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
         ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[] {"name", "message"}, new int[] { R.id.pseudo, R.id.textMessage });
