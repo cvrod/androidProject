@@ -1,4 +1,4 @@
-package com.excilys.parlezvous.projetandroid;
+package com.excilys.parlezvous.projetandroid.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.excilys.parlezvous.projetandroid.R;
+import com.excilys.parlezvous.projetandroid.tasks.ConnectionTask;
 
 import java.util.concurrent.ExecutionException;
 

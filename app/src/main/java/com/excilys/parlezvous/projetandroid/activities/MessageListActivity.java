@@ -1,4 +1,4 @@
-package com.excilys.parlezvous.projetandroid;
+package com.excilys.parlezvous.projetandroid.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.excilys.parlezvous.projetandroid.R;
+import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;

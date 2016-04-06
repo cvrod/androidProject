@@ -1,7 +1,10 @@
-package com.excilys.parlezvous.projetandroid;
+package com.excilys.parlezvous.projetandroid.tasks;
 
 import android.view.View;
 import android.widget.ProgressBar;
+
+import com.excilys.parlezvous.projetandroid.InputStreamToString;
+import com.excilys.parlezvous.projetandroid.activities.MainActivity;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -9,12 +12,20 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Connection Task who verify if a given user exist on server
+ */
+
 public class ConnectionTask extends android.os.AsyncTask {
     MainActivity activity;
     String user;
     String password;
     boolean identification = false;
 
+    /**
+     * Constructor
+     * @param act activity associate to the task
+     */
     public ConnectionTask(MainActivity act){
         this.activity = act;
     }
@@ -25,13 +36,15 @@ public class ConnectionTask extends android.os.AsyncTask {
         bar.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Main method who try to connect to the server and verify is the given
+     * @param params
+     * @return a boolean : true if verification pass, false else
+     */
     @Override
     protected Object doInBackground(Object[] params) {
         user = activity.getUsername();
         password = activity.getPassword();
-
-        System.out.println("User : "+user);
-        System.out.println("Password : "+password);
 
         URL url = null;
         HttpURLConnection urlConnection = null;
@@ -40,7 +53,6 @@ public class ConnectionTask extends android.os.AsyncTask {
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             String response = InputStreamToString.convert(in);
-            System.out.println(response);
             if(response.compareTo("true") == 0){
                 return true;
             }
