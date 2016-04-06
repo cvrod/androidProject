@@ -32,16 +32,17 @@ public class MessageListActivity extends AppCompatActivity {
         refresh();
     }
 
-    public void refreshButtonMethod(View view){
+    public void refreshButtonMethod(View view) {
         refresh();
     }
 
     /**
      * Refreshing message list
      * launching MessageTask to perform request on server
+     *
      * @see MessageTask
      */
-    public void refresh(){
+    public void refresh() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String user = settings.getString("user", "");
         String password = settings.getString("password", "");
@@ -61,7 +62,7 @@ public class MessageListActivity extends AppCompatActivity {
         ArrayList<HashMap<String, String>> list = messagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
-        ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[] {"name", "message"}, new int[] { R.id.pseudo, R.id.textMessage });
+        ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[]{"name", "message"}, new int[]{R.id.pseudo, R.id.textMessage});
 
         //Setting list Adapter
         listView.setAdapter(adapter);

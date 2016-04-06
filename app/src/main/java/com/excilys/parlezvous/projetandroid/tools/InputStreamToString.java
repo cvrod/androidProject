@@ -11,7 +11,7 @@ public class InputStreamToString {
         String line = "";
         StringBuilder builder = new StringBuilder();
 
-        BufferedReader rd=new BufferedReader(new InputStreamReader(is));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
         try {
             while ((line = rd.readLine()) != null) {

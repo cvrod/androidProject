@@ -30,10 +30,11 @@ public class SendMessageActivity extends AppCompatActivity {
     /**
      * Method called when sendMessage button is pushed
      * Calling SendMessageTask
-     * @see SendMessageTask
+     *
      * @param view
+     * @see SendMessageTask
      */
-    public void sendMessage(View view){
+    public void sendMessage(View view) {
 
         //getting user/password from SharedPreferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -42,11 +43,10 @@ public class SendMessageActivity extends AppCompatActivity {
 
         message = messageField.getText().toString();
         //Sending info to SendMessageTask
-        if(!message.isEmpty()) {
+        if (!message.isEmpty()) {
             SendMessageTask task = new SendMessageTask(user, password, message, this);
             task.execute();
-        }
-        else{
+        } else {
             Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();
         }
     }

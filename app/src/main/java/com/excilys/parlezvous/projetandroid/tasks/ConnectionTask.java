@@ -24,13 +24,14 @@ public class ConnectionTask extends android.os.AsyncTask {
 
     /**
      * Constructor
+     *
      * @param act activity associate to the task
      */
-    public ConnectionTask(MainActivity act){
+    public ConnectionTask(MainActivity act) {
         this.activity = act;
     }
 
-    protected void onPreExecute(){
+    protected void onPreExecute() {
         super.onPreExecute();
         ProgressBar bar = activity.getProgressBar();
         bar.setVisibility(View.VISIBLE);
@@ -38,6 +39,7 @@ public class ConnectionTask extends android.os.AsyncTask {
 
     /**
      * Main method who try to connect to the server and verify is the given
+     *
      * @param params
      * @return a boolean : true if verification pass, false else
      */
@@ -49,20 +51,18 @@ public class ConnectionTask extends android.os.AsyncTask {
         URL url = null;
         HttpURLConnection urlConnection = null;
         try {
-            url = new URL("http://formation-android-esaip.herokuapp.com/connect/"+user+"/"+password);
+            url = new URL("http://formation-android-esaip.herokuapp.com/connect/" + user + "/" + password);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             String response = InputStreamToString.convert(in);
-            if(response.compareTo("true") == 0){
+            if (response.compareTo("true") == 0) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             urlConnection.disconnect();
         }
         return null;

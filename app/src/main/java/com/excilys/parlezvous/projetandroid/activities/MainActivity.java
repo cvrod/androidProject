@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method called to flush usernameField and passwordField
+     *
      * @param view
      */
     public void flushButtonMethod(View view) {
@@ -109,8 +110,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method called when connection button is pushed
      * Calling ConnectionTask
-     * @see ConnectionTask
+     *
      * @param view
+     * @see ConnectionTask
      */
     public void sendButtonMethod(View view) {
         //Toast.makeText(this, "Toast !", Toast.LENGTH_SHORT).show();
@@ -138,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
             intent.putExtra("user", usernameField.getText().toString());
             startActivity(intent);
-        }
-        else{
+        } else {
             Toast.makeText(this, "Utilisateur inconnu !", Toast.LENGTH_SHORT).show();
         }
     }

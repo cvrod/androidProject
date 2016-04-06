@@ -20,7 +20,8 @@ public class MessageTask extends android.os.AsyncTask {
 
     /**
      * Constructor
-     * @param user user login
+     *
+     * @param user     user login
      * @param password user password
      */
     public MessageTask(String user, String password) {
@@ -30,6 +31,7 @@ public class MessageTask extends android.os.AsyncTask {
 
     /**
      * getting str response from server
+     *
      * @param params
      * @return str containing messages list separated by ';'
      */

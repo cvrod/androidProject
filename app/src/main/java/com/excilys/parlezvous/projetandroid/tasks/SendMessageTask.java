@@ -21,12 +21,13 @@ public class SendMessageTask extends android.os.AsyncTask {
 
     /**
      * Constructor
-     * @param user user login needed for server request
+     *
+     * @param user     user login needed for server request
      * @param password user password
-     * @param message str who contain message
-     * @param act activity associate to the task
+     * @param message  str who contain message
+     * @param act      activity associate to the task
      */
-    public SendMessageTask(String user, String password, String message, AppCompatActivity act){
+    public SendMessageTask(String user, String password, String message, AppCompatActivity act) {
         this.user = user;
         this.password = password;
         this.message = message;
@@ -35,6 +36,7 @@ public class SendMessageTask extends android.os.AsyncTask {
 
     /**
      * Send message to server
+     *
      * @param params
      * @return
      */
@@ -49,18 +51,18 @@ public class SendMessageTask extends android.os.AsyncTask {
             message = URLEncoder.encode(message, "UTF-8");
             message = message.replace("+", "%20");
 
-            url = new URL("http://formation-android-esaip.herokuapp.com/message/"+user+"/"+password+"/"+message);
+            url = new URL("http://formation-android-esaip.herokuapp.com/message/" + user + "/" + password + "/" + message);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             urlConnection.disconnect();
         }
         return null;
     }
+
     protected void onPostExecute(Object result) {
         super.onPostExecute(result);
         activity.finish();

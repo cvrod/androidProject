@@ -23,9 +23,10 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * Method called when sendMessage button is pushed
      * Launching SendMessageActivity
+     *
      * @param view
      */
-    public void sendMessageMethod(View view){
+    public void sendMessageMethod(View view) {
         Intent intent = new Intent(WelcomeActivity.this, SendMessageActivity.class);
         startActivity(intent);
     }
@@ -33,9 +34,10 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * Method called when messageList button is pushed
      * Launching messageListActivity
+     *
      * @param view
      */
-    public void messageListMethod(View view){
+    public void messageListMethod(View view) {
         Intent intent = new Intent(WelcomeActivity.this, MessageListActivity.class);
         startActivity(intent);
     }
