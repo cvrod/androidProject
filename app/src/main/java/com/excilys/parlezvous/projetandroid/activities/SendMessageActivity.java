@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.SendMessageTask;
@@ -41,8 +42,13 @@ public class SendMessageActivity extends AppCompatActivity {
 
         message = messageField.getText().toString();
         //Sending info to SendMessageTask
-        SendMessageTask task = new SendMessageTask(user,password,message, this);
-        task.execute();
+        if(!message.isEmpty()) {
+            SendMessageTask task = new SendMessageTask(user, password, message, this);
+            task.execute();
+        }
+        else{
+            Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
