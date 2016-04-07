@@ -93,14 +93,20 @@ public class ConnectionHandler {
         try {
             url = new URL(CONNECTION_URL + "/messages");
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
             urlConnection.setDoOutput(true);
-            urlConnection.setDoInput(false);
+            urlConnection.setRequestProperty("Content-Type", "application/json");
             OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
             System.out.println(jsonObject.toString());
             wr.write(jsonObject.toString());
             wr.flush();
-
             wr.close();
+
+            urlConnection.connect();
+            InputStream is = new BufferedInputStream(urlConnection.getInputStream());
+
+            String result = InputStreamToString.convert(is);
+            System.out.println("REPONSE DEBUGG : "+ result);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
