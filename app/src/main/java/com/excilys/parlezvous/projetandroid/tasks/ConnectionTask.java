@@ -55,10 +55,9 @@ public class ConnectionTask extends android.os.AsyncTask {
         try {
             jsonResponse = new JSONObject(response);
             int status = jsonResponse.getInt("status");
-            if(status == 200){
+            if (status == 200) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         } catch (JSONException e) {

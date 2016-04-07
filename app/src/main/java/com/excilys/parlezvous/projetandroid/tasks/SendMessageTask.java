@@ -4,13 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-
 /**
  * Task who send a formated message to the server
  */

@@ -15,9 +15,6 @@ import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.ConnectionTask;
 import com.excilys.parlezvous.projetandroid.tasks.RegisterTask;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.concurrent.ExecutionException;
 
 /**

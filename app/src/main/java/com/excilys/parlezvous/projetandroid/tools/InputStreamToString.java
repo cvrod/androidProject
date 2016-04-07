@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Convert InputStream to String
+ */
 public class InputStreamToString {
 
     public static String convert(InputStream is) {

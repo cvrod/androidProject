@@ -15,9 +15,15 @@ import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.UUID;
 
+/**
+ * handle communications between rest server and app
+ */
 public class ConnectionHandler {
     public final static String CONNECTION_URL = "https://training.loicortola.com/chat-rest/2.0";
 
+    /**
+     * Static class used to set user/password in HTTP Basic Authenticator
+     */
     static class BasicAuthenticator extends Authenticator {
         String user;
         String password;
@@ -33,6 +39,12 @@ public class ConnectionHandler {
         }
     }
 
+    /**
+     * authentification method called by ConnectionTask to verify if a user/passworrd exist on server
+     * @param user user login str
+     * @param password user password str
+     * @return JSon response str
+     */
     public static String authentification(final String user, final String password) {
 
         URL url = null;
@@ -52,6 +64,14 @@ public class ConnectionHandler {
         }
     }
 
+    /**
+     * getting message list from server
+     * @param user user login str
+     * @param password user password str
+     * @param limit maximum number of result
+     * @param offset result offset
+     * @return JSONArray under str form
+     */
     public static String getMessages(final String user, final String password, int limit, int offset) {
         URL url = null;
         HttpURLConnection urlConnection = null;
@@ -70,6 +90,12 @@ public class ConnectionHandler {
         }
     }
 
+    /**
+     * sending message to server
+     * @param user user login
+     * @param password user password
+     * @param message message content
+     */
     public static void sendMessage(final String user, final String password, String message) {
 
         URL url = null;
@@ -112,6 +138,12 @@ public class ConnectionHandler {
         }
     }
 
+    /**
+     * send register request
+     * @param user user login
+     * @param password user password
+     * @return JSON status 200 : success, 400 : fail
+     */
     public static int register(String user, String password) {
 
         HttpURLConnection conn = null;

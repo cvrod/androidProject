@@ -1,7 +1,6 @@
 package com.excilys.parlezvous.projetandroid.activities;
 
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,9 +11,6 @@ import android.widget.SimpleAdapter;
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
 import com.excilys.parlezvous.projetandroid.tools.MessagesToList;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
