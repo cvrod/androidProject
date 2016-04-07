@@ -24,6 +24,7 @@
             android:text="@string/sendMessage"
             android:id="@+id/fragmentSendMessageButton"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="fragmentSendButtonMethod"/>
     </LinearLayout>
 </FrameLayout>

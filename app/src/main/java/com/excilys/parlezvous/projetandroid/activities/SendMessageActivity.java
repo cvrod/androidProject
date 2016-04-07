@@ -59,6 +59,7 @@ public class SendMessageActivity extends AppCompatActivity {
         if (!message.isEmpty()) {
             SendMessageTask task = new SendMessageTask(user, password, message, this);
             task.execute();
+            finish();
         } else {
             Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();
         }

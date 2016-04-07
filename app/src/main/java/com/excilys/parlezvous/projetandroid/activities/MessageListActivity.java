@@ -7,14 +7,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
+import com.excilys.parlezvous.projetandroid.tasks.SendMessageTask;
+import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
 import com.excilys.parlezvous.projetandroid.tools.MessagesToList;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
@@ -25,12 +30,18 @@ import java.util.concurrent.ExecutionException;
 public class MessageListActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "PrefsFile";
     private ListView listView;
+    String user;
+    String password;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        this.user = settings.getString("user", "");
+        this.password = settings.getString("password", "");
 
         //ToolBar intialisation
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -83,9 +94,6 @@ public class MessageListActivity extends AppCompatActivity {
      * @see MessageTask
      */
     public void refresh() {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String user = settings.getString("user", "");
-        String password = settings.getString("password", "");
 
         MessageTask task = new MessageTask(user, password);
         task.execute();
@@ -106,6 +114,20 @@ public class MessageListActivity extends AppCompatActivity {
 
         //Setting list Adapter
         listView.setAdapter(adapter);
+    }
+
+    public void fragmentSendButtonMethod(View view){
+        EditText messageField = (EditText) findViewById(R.id.fragmentSendMessageLabel);
+        String message = messageField.getText().toString();
+
+        if (!message.isEmpty()) {
+            SendMessageTask task = new SendMessageTask(user, password, message, this);
+            task.execute();
+            refresh();
+        } else {
+            Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

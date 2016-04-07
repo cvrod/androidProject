@@ -43,6 +43,5 @@ public class SendMessageTask extends android.os.AsyncTask {
 
     protected void onPostExecute(Object result) {
         super.onPostExecute(result);
-        activity.finish();
     }
 }

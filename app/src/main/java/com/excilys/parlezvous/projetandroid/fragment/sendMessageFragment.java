@@ -17,4 +17,5 @@ public class sendMessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_send_message, container, false);
     }
+
 }
