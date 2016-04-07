@@ -32,7 +32,7 @@ public class SendMessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Sets the toolbar title
-        if(toolbar != null) {
+        if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("Chip Chat");
             getSupportActionBar().setHomeButtonEnabled(true);

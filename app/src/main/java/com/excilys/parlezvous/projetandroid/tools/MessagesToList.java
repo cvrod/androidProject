@@ -25,20 +25,18 @@ public class MessagesToList {
             String userTmp;
             String messageTmp;
 
-            for(int cpt = 0; cpt < jsonResponseLength; cpt++){
+            for (int cpt = 0; cpt < jsonResponseLength; cpt++) {
                 JSONObject tmp = jsonResponse.getJSONObject(cpt);
                 userTmp = tmp.getString("login");
                 messageTmp = tmp.getString("message");
                 HashMap<String, String> tmpHash = new HashMap<>(2);
                 tmpHash.put("name", userTmp);
                 tmpHash.put("message", messageTmp);
-                list.add(0,tmpHash);
+                list.add(tmpHash);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
         return list;
     }
 }

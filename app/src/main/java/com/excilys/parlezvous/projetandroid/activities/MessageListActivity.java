@@ -16,10 +16,8 @@ import android.widget.Toast;
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
 import com.excilys.parlezvous.projetandroid.tasks.SendMessageTask;
-import com.excilys.parlezvous.projetandroid.tools.ConnectionHandler;
 import com.excilys.parlezvous.projetandroid.tools.MessagesToList;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
@@ -48,7 +46,7 @@ public class MessageListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Sets the toolbar title
-        if(toolbar != null) {
+        if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("Chip Chat");
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -63,6 +61,7 @@ public class MessageListActivity extends AppCompatActivity {
 
     /**
      * Refresh menu Creation
+     *
      * @param menu
      * @return
      */
@@ -73,6 +72,7 @@ public class MessageListActivity extends AppCompatActivity {
 
     /**
      * Menu Listener
+     *
      * @param item
      * @return
      */
@@ -93,7 +93,7 @@ public class MessageListActivity extends AppCompatActivity {
      *
      * @see MessageTask
      */
-    public void refresh() {
+    public int refresh() {
 
         MessageTask task = new MessageTask(user, password);
         task.execute();
@@ -114,16 +114,21 @@ public class MessageListActivity extends AppCompatActivity {
 
         //Setting list Adapter
         listView.setAdapter(adapter);
+        listView.setSelection(list.size()-1);
+        return list.size();
     }
 
-    public void fragmentSendButtonMethod(View view){
+    public void fragmentSendButtonMethod(View view) {
         EditText messageField = (EditText) findViewById(R.id.fragmentSendMessageLabel);
+        ListView listView = (ListView) findViewById(R.id.listView);
         String message = messageField.getText().toString();
 
         if (!message.isEmpty()) {
             SendMessageTask task = new SendMessageTask(user, password, message, this);
             task.execute();
-            refresh();
+            int listSize = refresh();
+            listView.setSelection(listSize-1);
+            messageField.setText("");
         } else {
             Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();
         }

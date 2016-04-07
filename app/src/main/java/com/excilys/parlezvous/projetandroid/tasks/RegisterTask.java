@@ -15,6 +15,7 @@ public class RegisterTask extends android.os.AsyncTask {
 
     /**
      * Construction
+     *
      * @param act associate activity used to get user/password parameters
      */
     public RegisterTask(MainActivity act) {
@@ -23,6 +24,7 @@ public class RegisterTask extends android.os.AsyncTask {
 
     /**
      * Calling register method from ConnectionHandler with user/password informations
+     *
      * @param params
      * @return response code : 200 if registration success, 400 else
      */
