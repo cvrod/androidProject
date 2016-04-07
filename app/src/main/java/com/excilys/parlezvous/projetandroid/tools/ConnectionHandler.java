@@ -5,18 +5,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.UUID;
 
 public class ConnectionHandler {
@@ -63,7 +59,7 @@ public class ConnectionHandler {
         Authenticator.setDefault(new BasicAuthenticator(user, password));
 
         try {
-            url = new URL(CONNECTION_URL + "/messages?&limit="+limit+"&offset="+offset);
+            url = new URL(CONNECTION_URL + "/messages?&limit=" + limit + "&offset=" + offset);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             return InputStreamToString.convert(in);
@@ -103,18 +99,54 @@ public class ConnectionHandler {
             wr.close();
 
             urlConnection.connect();
-            InputStream is = new BufferedInputStream(urlConnection.getInputStream());
+            InputStream is = new BufferedInputStream(urlConnection.getErrorStream());
 
             String result = InputStreamToString.convert(is);
-            System.out.println("REPONSE DEBUGG : "+ result);
+            System.out.println("REPONSE DEBUGG : " + result);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             urlConnection.disconnect();
         }
     }
 
+    public static int register(String user, String password) {
+
+        HttpURLConnection conn = null;
+        try {
+
+            String urlText = "https://training.loicortola.com/chat-rest/2.0/register";
+            URL url = new URL(urlText);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("login", user);
+                jsonObject.put("password", password);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String json = jsonObject.toString();
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(json);
+            out.close();
+
+            conn.connect();
+            int result = conn.getResponseCode();
+            System.out.println("Response : " + result);
+            return result;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return 400;
+    }
 }

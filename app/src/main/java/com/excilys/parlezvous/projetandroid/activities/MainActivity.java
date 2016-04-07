@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.ConnectionTask;
+import com.excilys.parlezvous.projetandroid.tasks.RegisterTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
@@ -142,5 +146,33 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Utilisateur inconnu !", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Method called when register button is pushed
+     * Called RegisterTask
+     *
+     * @param view
+     * @see RegisterTask
+     */
+    public void registerButtonMethod(View view) {
+        RegisterTask registerTask = new RegisterTask(this);
+        registerTask.execute();
+        int result = 400;
+        try {
+            result = (int) registerTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (result == 200) {
+            Toast.makeText(this, "Inscription reussie !", Toast.LENGTH_SHORT).show();
+            sendButtonMethod(view);
+        } else {
+            Toast.makeText(this, "Erreur d'insciption !", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

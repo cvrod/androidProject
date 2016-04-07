@@ -15,4 +15,6 @@
     <string name="title_activity_send_message">SendMessageActivity</string>
     <string name="sendMessageHeader">Envoi de message</string>
     <string name="sendMessage">Envoyer</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="registerButton">Inscription</string>
 </resources>
