@@ -41,7 +41,8 @@ public class ConnectionHandler {
 
     /**
      * authentification method called by ConnectionTask to verify if a user/passworrd exist on server
-     * @param user user login str
+     *
+     * @param user     user login str
      * @param password user password str
      * @return JSon response str
      */
@@ -66,10 +67,11 @@ public class ConnectionHandler {
 
     /**
      * getting message list from server
-     * @param user user login str
+     *
+     * @param user     user login str
      * @param password user password str
-     * @param limit maximum number of result
-     * @param offset result offset
+     * @param limit    maximum number of result
+     * @param offset   result offset
      * @return JSONArray under str form
      */
     public static String getMessages(final String user, final String password, int limit, int offset) {
@@ -92,9 +94,10 @@ public class ConnectionHandler {
 
     /**
      * sending message to server
-     * @param user user login
+     *
+     * @param user     user login
      * @param password user password
-     * @param message message content
+     * @param message  message content
      */
     public static void sendMessage(final String user, final String password, String message) {
 
@@ -140,7 +143,8 @@ public class ConnectionHandler {
 
     /**
      * send register request
-     * @param user user login
+     *
+     * @param user     user login
      * @param password user password
      * @return JSON status 200 : success, 400 : fail
      */
