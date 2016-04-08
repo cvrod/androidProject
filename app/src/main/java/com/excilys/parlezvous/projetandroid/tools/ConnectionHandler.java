@@ -128,10 +128,10 @@ public class ConnectionHandler {
             wr.close();
 
             urlConnection.connect();
-            InputStream is = new BufferedInputStream(urlConnection.getErrorStream());
+            InputStream is = new BufferedInputStream(urlConnection.getInputStream());
 
             String result = InputStreamToString.convert(is);
-            System.out.println("REPONSE DEBUGG : " + result);
+            System.out.println("Message from Server after message post : " + result);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

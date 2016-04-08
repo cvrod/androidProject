@@ -128,6 +128,7 @@ public class MessageListActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                System.out.println(adapterV2.getCount());
                 listView.setAdapter(adapterV2);
                 listView.setSelection(list.size() - 1);
             }

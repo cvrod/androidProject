@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:padding="10dp"
-    >
+    android:background="@drawable/message_background">
 
     <TextView
         android:id="@+id/pseudo"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ff2e2e"
+        android:gravity="start"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
         tools:text="pseudo"
@@ -18,9 +19,10 @@
 
     <TextView
         android:id="@+id/textMessage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+        android:layout_gravity="start"
         android:layout_alignLeft="@+id/pseudo"
         android:layout_below="@+id/pseudo"
         tools:text="text"

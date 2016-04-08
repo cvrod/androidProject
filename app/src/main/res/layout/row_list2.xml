@@ -1,14 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="10dp"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp" >
+    android:paddingRight="10dp"
+    android:textAlignment="textEnd"
+    android:layout_gravity="end">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/user_message_background">
     <TextView
         android:id="@+id/pseudo"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="2dip"
         android:paddingTop="6dip"
@@ -16,15 +26,20 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textAlignment="textEnd"
-        android:gravity="end" />
+        android:layout_gravity="end"
+        android:gravity="end"
+        tools:text="pseudo"/>
 
     <TextView
         android:id="@+id/textMessage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="2dip"
         android:textColor="#000000"
         android:textAlignment="textEnd"
-        android:gravity="end" />
+        android:layout_gravity="end"
+        android:gravity="end"
+        tools:text="message"/>
+    </LinearLayout>
 
 </LinearLayout>
