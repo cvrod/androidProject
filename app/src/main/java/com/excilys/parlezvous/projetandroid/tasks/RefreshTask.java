@@ -21,7 +21,7 @@ public class RefreshTask extends android.os.AsyncTask {
     protected Object doInBackground(Object[] params) {
         timer = new Timer();
         RefreshTimerTask tt = new RefreshTimerTask(this.associateActivity);
-        timer.schedule(tt, 0, 1000);
+        timer.schedule(tt, 0, 100000);
         return null;
     }
 

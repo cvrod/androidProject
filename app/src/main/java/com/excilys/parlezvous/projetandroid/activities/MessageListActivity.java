@@ -8,12 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.excilys.parlezvous.projetandroid.R;
+import com.excilys.parlezvous.projetandroid.adapter.MessageListAdapter;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
 import com.excilys.parlezvous.projetandroid.tasks.RefreshTask;
 import com.excilys.parlezvous.projetandroid.tasks.SendMessageTask;
@@ -118,13 +117,13 @@ public class MessageListActivity extends AppCompatActivity {
         final ArrayList<HashMap<String, String>> list = MessagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
-        final ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[]{"name", "message"}, new int[]{R.id.pseudo, R.id.textMessage});
+        final MessageListAdapter adapterV2 = new MessageListAdapter(this, list,this.user);
 
         //Setting list Adapter
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                listView.setAdapter(adapter);
+                listView.setAdapter(adapterV2);
                 listView.setSelection(list.size() - 1);
             }
         });
