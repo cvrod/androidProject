@@ -57,7 +57,9 @@ public class MessageListActivity extends AppCompatActivity {
         //Getting ListView from Layout
         listView = (ListView) findViewById(R.id.listView);
 
-        refreshTask= new RefreshTask(this);
+        Toast.makeText(this, "Hello " + this.user, Toast.LENGTH_SHORT).show();
+
+        refreshTask = new RefreshTask(this);
         refreshTask.execute();
 
     }
@@ -91,6 +93,9 @@ public class MessageListActivity extends AppCompatActivity {
             case R.id.refresh:
                 refresh();
                 return true;
+            case R.id.deconnexion:
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -117,7 +122,7 @@ public class MessageListActivity extends AppCompatActivity {
         final ArrayList<HashMap<String, String>> list = MessagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
-        final MessageListAdapter adapterV2 = new MessageListAdapter(this, list,this.user);
+        final MessageListAdapter adapterV2 = new MessageListAdapter(this, list, this.user);
 
         //Setting list Adapter
         runOnUiThread(new Runnable() {
@@ -139,7 +144,7 @@ public class MessageListActivity extends AppCompatActivity {
             SendMessageTask task = new SendMessageTask(user, password, message, this);
             task.execute();
             int listSize = refresh();
-            listView.setSelection(listSize-1);
+            listView.setSelection(listSize - 1);
             messageField.setText("");
         } else {
             Toast.makeText(this, "Message Vide !", Toast.LENGTH_SHORT).show();

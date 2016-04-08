@@ -25,7 +25,7 @@ public class RefreshTask extends android.os.AsyncTask {
         return null;
     }
 
-    public Timer getTimer(){
+    public Timer getTimer() {
         return this.timer;
     }
 }

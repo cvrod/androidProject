@@ -8,7 +8,7 @@ public class RefreshTimerTask extends TimerTask {
 
     MessageListActivity associateActivity;
 
-    public RefreshTimerTask(MessageListActivity act){
+    public RefreshTimerTask(MessageListActivity act) {
         this.associateActivity = act;
     }
 

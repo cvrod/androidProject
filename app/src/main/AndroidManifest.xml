@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.WelcomeActivity"
-            android:label="@string/title_activity_welcome"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activities.MessageListActivity"
             android:label="@string/title_activity_message_list"
             android:theme="@style/AppTheme.NoActionBar"

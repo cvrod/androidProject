@@ -150,8 +150,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("password", this.getPassword());
             editor.commit();
 
-            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
-            intent.putExtra("user", usernameField.getText().toString());
+            Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Utilisateur inconnu !", Toast.LENGTH_SHORT).show();
