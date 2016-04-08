@@ -34,7 +34,6 @@ public class MessageTask extends android.os.AsyncTask {
      */
     protected Object doInBackground(Object[] params) {
         String response = ConnectionHandler.getMessages(this.user, this.password, LIMIT, OFFSET);
-        System.out.println(response);
         return response;
     }
 }

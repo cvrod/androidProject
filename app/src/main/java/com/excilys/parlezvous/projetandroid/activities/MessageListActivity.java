@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.excilys.parlezvous.projetandroid.R;
 import com.excilys.parlezvous.projetandroid.tasks.MessageTask;
+import com.excilys.parlezvous.projetandroid.tasks.RefreshTask;
 import com.excilys.parlezvous.projetandroid.tasks.SendMessageTask;
 import com.excilys.parlezvous.projetandroid.tools.MessagesToList;
 
@@ -28,6 +29,7 @@ import java.util.concurrent.ExecutionException;
 public class MessageListActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "PrefsFile";
     private ListView listView;
+    private RefreshTask refreshTask;
     String user;
     String password;
 
@@ -55,8 +57,16 @@ public class MessageListActivity extends AppCompatActivity {
 
         //Getting ListView from Layout
         listView = (ListView) findViewById(R.id.listView);
-        refresh();
 
+        refreshTask= new RefreshTask(this);
+        refreshTask.execute();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        refreshTask.getTimer().cancel();
     }
 
     /**
@@ -100,21 +110,24 @@ public class MessageListActivity extends AppCompatActivity {
         String result = "";
         try {
             result = (String) task.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
         //List used by the Adapter
-        ArrayList<HashMap<String, String>> list = MessagesToList.toList(result);
+        final ArrayList<HashMap<String, String>> list = MessagesToList.toList(result);
 
         //creating listAdapter with ArrayList of Hashmap.
-        ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[]{"name", "message"}, new int[]{R.id.pseudo, R.id.textMessage});
+        final ListAdapter adapter = new SimpleAdapter(MessageListActivity.this, list, R.layout.row_list, new String[]{"name", "message"}, new int[]{R.id.pseudo, R.id.textMessage});
 
         //Setting list Adapter
-        listView.setAdapter(adapter);
-        listView.setSelection(list.size()-1);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                listView.setAdapter(adapter);
+                listView.setSelection(list.size() - 1);
+            }
+        });
         return list.size();
     }
 
